@@ -42,8 +42,10 @@ pipeline {
 stage("aws") {
             steps {
                 script {
-                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                        sh 'aws ec2 describe-instances'
+                    sshagent(credentials: ['jenkinsCli']) {
+                    sudo docker pull anas99anas/react-nodejs-example:1.0
+                    //sh 'ssh user@hostname "your-command"'
+
                 }
             }
         }
