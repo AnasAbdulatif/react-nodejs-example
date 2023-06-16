@@ -1,6 +1,6 @@
 def buildApp() {
     echo "building the application... ANAS"
-    sh 'mvn package'
+
 } 
 
 def buildImage() {
