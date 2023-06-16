@@ -43,7 +43,7 @@ stage("aws") {
             steps {
                 script {
                         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                         AWS("--region=us-east-1 aws ec2 describe-instances")
+                        sh 'aws ec2 describe-instances'
                 }
             }
         }
