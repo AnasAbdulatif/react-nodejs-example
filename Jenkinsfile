@@ -42,10 +42,11 @@ pipeline {
 stage("aws") {
             steps {
                 script {
-                def dockerpull = "docker run --name reactNodeAppp -p 3080:3080 anas99anas/react-nodejs-example:1.0"
+                def dockercompose = "docker-compose -f docker-compose.yaml up --detach"
  sshagent(['jenkinsCli']) {
-          sh "ssh -o StrictHostKeyChecking=no ec2-user@3.236.228.118 ${dockerpull}"
-          sh "ssh -o StrictHostKeyChecking=no ec2-user@3.236.228.118 whoami"
+              sh "ssh -o StrictHostKeyChecking=no ec2-user@3.236.228.118 whoami"
+                sh "scp docker-compose.yaml ec2-user@3.236.228.118:/home/ec2-suer"
+          sh "ssh -o StrictHostKeyChecking=no ec2-user@3.236.228.118 ${dockercompose}"
  }
     }
 
