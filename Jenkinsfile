@@ -43,7 +43,8 @@ stage("aws") {
             steps {
                 script {
                     sshagent(credentials: ['jenkinsCli']) {
-                    sh ' docker run --name reactNodeAppp -p 3080:3080 anas99anas/react-nodejs-example:1.0'
+                      sh 'whoami'
+                    //sh ' docker run --name reactNodeAppp -p 3080:3080 anas99anas/react-nodejs-example:1.0'
                     //sh 'ssh user@hostname "your-command"'
 
                 }
