@@ -43,7 +43,7 @@ stage("aws") {
             steps {
                 script {
                     sshagent(credentials: ['jenkinsCli']) {
-                    sh 'sudo docker pull anas99anas/react-nodejs-example:1.0'
+                    sh ' docker pull anas99anas/react-nodejs-example:1.0'
                     //sh 'ssh user@hostname "your-command"'
 
                 }
