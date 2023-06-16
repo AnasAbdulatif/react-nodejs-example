@@ -41,7 +41,7 @@ pipeline {
         stage("deploy") {
             steps {
                 script {
-                    deployApp'anas99anas/react-nodejs-example:1.0'
+                    deployApp 'anas99anas/react-nodejs-example:1.0'
                 }
             }
         }
