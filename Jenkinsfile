@@ -41,11 +41,12 @@ pipeline {
 
 stage("aws") {
             steps {
-                def dockerpull ="docker run --name reactNodeAppp -p 3080:3080 anas99anas/react-nodejs-example:1.0"
+                script {
+                def dockerpull = "docker run --name reactNodeAppp -p 3080:3080 anas99anas/react-nodejs-example:1.0"
  sshagent(['jenkinsCli']) {
           sh "ssh -o StrictHostKeyChecking=no ec2-user@3.236.228.118 ${dockerpull}"
           sh "ssh -o StrictHostKeyChecking=no ec2-user@3.236.228.118 whoami"
-     
+ }
     }
 
         }
