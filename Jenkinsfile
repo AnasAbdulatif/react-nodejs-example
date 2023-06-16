@@ -41,17 +41,15 @@ pipeline {
 
 stage("aws") {
             steps {
-                script {
-                    sshagent(credentials: ['jenkinsCli']) {
-                        
-                        sh 'ec2-user@3.236.228.118 "whoami"'
-                        sh 'ec2-user@3.236.228.118 "docker run --name reactNodeAppp -p 3080:3080 anas99anas/react-nodejs-example:1.0"'
+ sshagent(credentials: ['jenkinsCli']) {
+      sh '''
+          [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+          ssh-keyscan -t rsa,dsa example.com >> ~/.ssh/known_hosts
+          ssh ec2-user@3.236.228.118 "docker run --name reactNodeAppp -p 3080:3080 anas99anas/react-nodejs-example:1.0"
+          ssh ec2-user@3.236.228.118 "whoami"
+      '''
+    }
 
-    
-                           
-
-                }
-            }
         }
         
 }
