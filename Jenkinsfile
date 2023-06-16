@@ -44,10 +44,11 @@ stage("aws") {
                 script {
                     sshagent(credentials: ['jenkinsCli']) {
                         
-                        sh '''
-                    ssh ec2-user@3.236.228.118 "whoami"
-                    ssh ec2-user@3.236.228.118 "docker run --name reactNodeAppp -p 3080:3080 anas99anas/react-nodejs-example:1.0"
-                           '''
+                        sh 'ec2-user@3.236.228.118 "whoami"'
+                        sh 'ec2-user@3.236.228.118 "docker run --name reactNodeAppp -p 3080:3080 anas99anas/react-nodejs-example:1.0"'
+
+    
+                           
 
                 }
             }
