@@ -23,27 +23,39 @@ pipeline {
                 }
             }
         }
-        stage("build App") {
-            steps {
-                script {
-                    buildApp()
-                }
-            }
-        }
-        stage("build and push image") {
-            steps {
-                script {
-                buildImage 'anas99anas/react-nodejs-example:1.0'
+        // stage("build App") {
+        //     steps {
+        //         script {
+        //             buildApp()
+        //         }
+        //     }
+        // }
+        // stage("build and push image") {
+        //     steps {
+        //         script {
+        //         buildImage 'anas99anas/react-nodejs-example:1.0'
 
-                }
-            }
-        }
-        stage("deploy") {
+        //         }
+        //     }
+        // }
+
+stage("aws") {
             steps {
                 script {
-                    deployApp 'anas99anas/react-nodejs-example:1.0'
+                        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws-key', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                         AWS("--region=us-east-1 aws ec2 describe-instances")
                 }
             }
         }
+        
+}
+
+        // stage("deploy") {
+        //     steps {
+        //         script {
+        //             deployApp 'anas99anas/react-nodejs-example:1.0'
+        //         }
+        //     }
+        // }
     }
 }
